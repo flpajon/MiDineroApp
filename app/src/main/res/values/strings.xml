@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Mi Dinero</string>
+    <string name="et_email">Email</string>
+    <string name="et_password">Contraseña</string>
+    <string name="btn_ingresar">Ingresar</string>
+    <string name="et_confirm_password">Confirmar Contraseña</string>
+    <string name="btn_singup">Registrar</string>
+    <string name="complete_fields">Complete todos los campos</string>
+    <string name="passwords_do_not_match">Las contraseñas no coinciden.</string>
+    <string name="only_email">No ha ingrsado un mail valido.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">SPLASH FRAGMENT</string>
+    <string name="background">Fondo de la app</string>
+</resources>

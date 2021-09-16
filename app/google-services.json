@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "484523454315",
+    "project_id": "midinero-e05f1",
+    "storage_bucket": "midinero-e05f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484523454315:android:6bfee1a782529f336e262e",
+        "android_client_info": {
+          "package_name": "ar.com.midinero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484523454315-lk0lo5ak493jlh6jvco15qbbus72mjak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4Xbz3NdUXCkOyUQRc_a_DpLg3OtyBUS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484523454315-lk0lo5ak493jlh6jvco15qbbus72mjak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
