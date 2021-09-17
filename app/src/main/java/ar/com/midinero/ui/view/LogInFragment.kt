@@ -2,7 +2,9 @@ package ar.com.midinero.ui.view
 
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,7 +19,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
-import android.util.Patterns
 import java.util.regex.Pattern
 
 
@@ -35,42 +36,59 @@ class LogInFragment : Fragment(R.layout.fragment_log_in) {
 
         binding = FragmentLogInBinding.bind(view)
 
+        onActionSended()
+
         onLogInClick()
+    }
+
+    fun onActionSended() {
+        binding.password.setOnEditorActionListener { _, actionId, _ ->
+            var handled = false
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                handled = true
+                logIn()
+            }
+            handled
+        }
     }
 
     private fun onLogInClick() {
         binding.btnLogIn.setOnClickListener {
-            val email = binding.etEmail.editText?.text.toString().trim()
-            val password = binding.etPassword.editText?.text.toString().trim()
+            logIn()
+        }
+    }
 
-            if (validateFields(email, password)) {
+    private fun logIn() {
+        val email = binding.etEmail.editText?.text.toString().trim()
+        val password = binding.etPassword.editText?.text.toString().trim()
 
-                viewModel.isUserAuth().observe(viewLifecycleOwner) { result ->
-                    when (result) {
-                        is Result.Loading -> {
-                            binding.btnLogIn.hide()
-                            binding.pbLogIn.show()
-                        }
-                        is Result.Success -> {
-                            Log.i(
-                                MiDineroApp.TAG,
-                                "uid: ${Firebase.auth.currentUser?.uid ?: "No Auth."}"
-                            )
-                            binding.btnLogIn.show()
-                            binding.pbLogIn.hide()
-                        }
-                        is Result.Failure -> {
-                            Log.e(TAG, "error: ${result.exception}")
-                            FirebaseCrashlytics.getInstance().recordException(result.exception)
-                            binding.btnLogIn.show()
-                            binding.pbLogIn.hide()
-                        }
+        if (validateFields(email, password)) {
+
+            viewModel.isUserAuth().observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        binding.btnLogIn.hide()
+                        binding.pbLogIn.show()
                     }
-
+                    is Result.Success -> {
+                        Log.i(
+                            MiDineroApp.TAG,
+                            "uid: ${Firebase.auth.currentUser?.uid ?: "No Auth."}"
+                        )
+                        binding.btnLogIn.show()
+                        binding.pbLogIn.hide()
+                    }
+                    is Result.Failure -> {
+                        Log.e(TAG, "error: ${result.exception}")
+                        FirebaseCrashlytics.getInstance().recordException(result.exception)
+                        binding.btnLogIn.show()
+                        binding.pbLogIn.hide()
+                    }
                 }
 
-                viewModel.logIn(email, password)
             }
+
+            viewModel.logIn(email, password)
         }
     }
 
@@ -81,7 +99,7 @@ class LogInFragment : Fragment(R.layout.fragment_log_in) {
             return false
         }
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
-        if (!pattern.matcher(email).matches()){
+        if (!pattern.matcher(email).matches()) {
             Toast.makeText(requireContext(), getString(R.string.only_email), Toast.LENGTH_LONG)
                 .show()
             return false

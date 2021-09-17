@@ -86,6 +86,7 @@ dependencies {
     // Utils
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "com.google.code.gson:gson:2.8.7"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
