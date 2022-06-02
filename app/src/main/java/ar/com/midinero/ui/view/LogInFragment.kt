@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import ar.com.midinero.MiDineroApp
 import ar.com.midinero.R
 import ar.com.midinero.core.Result
@@ -15,9 +16,10 @@ import ar.com.midinero.core.hide
 import ar.com.midinero.core.show
 import ar.com.midinero.databinding.FragmentLogInBinding
 import ar.com.midinero.ui.viewmodel.LogInViewModel
-import com.google.firebase.auth.ktx.auth
+import ar.com.midinero.ui.viewpager.LogInViewPagerFragmentDirections
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
 
@@ -36,9 +38,59 @@ class LogInFragment : Fragment(R.layout.fragment_log_in) {
 
         binding = FragmentLogInBinding.bind(view)
 
+        observeIsUserAuth()
+
         onActionSended()
 
         onLogInClick()
+    }
+
+    private fun observeIsUserAuth() {
+        viewModel.isUserAuth().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.btnLogIn.hide()
+                    binding.pbLogIn.show()
+                }
+                is Result.Success -> {
+                    goToHome()
+                    binding.btnLogIn.show()
+                    binding.pbLogIn.hide()
+                }
+                is Result.Failure -> {
+                    when (result.exception.cause) {
+                        is FirebaseAuthInvalidUserException -> {
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.invalid_email),
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                        is FirebaseAuthInvalidCredentialsException -> {
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.invalid_password),
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                        else -> {
+                            Log.e(TAG, "error: ${result.exception}")
+                            FirebaseCrashlytics.getInstance().recordException(result.exception)
+                        }
+                    }
+                    binding.btnLogIn.show()
+                    binding.pbLogIn.hide()
+                }
+            }
+        }
+    }
+
+    private fun goToHome() {
+        findNavController().navigate(
+            LogInViewPagerFragmentDirections.actionLogInViewPagerFragmentToHomeFragment()
+        )
     }
 
     fun onActionSended() {
@@ -63,31 +115,6 @@ class LogInFragment : Fragment(R.layout.fragment_log_in) {
         val password = binding.etPassword.editText?.text.toString().trim()
 
         if (validateFields(email, password)) {
-
-            viewModel.isUserAuth().observe(viewLifecycleOwner) { result ->
-                when (result) {
-                    is Result.Loading -> {
-                        binding.btnLogIn.hide()
-                        binding.pbLogIn.show()
-                    }
-                    is Result.Success -> {
-                        Log.i(
-                            MiDineroApp.TAG,
-                            "uid: ${Firebase.auth.currentUser?.uid ?: "No Auth."}"
-                        )
-                        binding.btnLogIn.show()
-                        binding.pbLogIn.hide()
-                    }
-                    is Result.Failure -> {
-                        Log.e(TAG, "error: ${result.exception}")
-                        FirebaseCrashlytics.getInstance().recordException(result.exception)
-                        binding.btnLogIn.show()
-                        binding.pbLogIn.hide()
-                    }
-                }
-
-            }
-
             viewModel.logIn(email, password)
         }
     }

@@ -8,6 +8,10 @@ class UserRepository @Inject constructor(private val dataSource: UserDataSource)
     suspend fun authUser(email: String, password: String): Boolean =
         dataSource.authUser(email, password)
 
-    suspend fun singUp(email: String, password: String): Boolean =
-        dataSource.singUp(email, password)
+    suspend fun signUp(email: String, password: String): Boolean =
+        dataSource.signUp(email, password)
+
+    suspend fun validateUserAuth(): Boolean = dataSource.validateUserAuth()
+
+    suspend fun logOut() = dataSource.logOut()
 }

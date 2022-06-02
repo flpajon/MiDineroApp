@@ -13,12 +13,13 @@ import javax.inject.Inject
 @HiltViewModel
 class LogInViewModel @Inject constructor(private val useCase: AuthUserUseCase) : ViewModel() {
 
-    private val _isUserAuth = MutableLiveData<Result<Boolean>>(Result.Loading())
+    private val _isUserAuth = MutableLiveData<Result<Boolean>>()
 
     fun isUserAuth(): LiveData<Result<Boolean>> = _isUserAuth
 
     fun logIn(email: String, password: String) = viewModelScope.launch {
         kotlin.runCatching {
+            _isUserAuth.value = Result.Loading()
             useCase.authUser(email, password)
         }.onSuccess { result ->
             _isUserAuth.value = Result.Success(result)

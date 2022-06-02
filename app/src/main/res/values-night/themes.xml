@@ -4,15 +4,19 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/verde_mate_claro</item>
         <item name="colorPrimaryVariant">@color/verde_mate_oscuro</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
+
+        <item name="android:textColor">@color/verde_mate_claro</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/verde_mate_claro</item>
         <item name="colorSecondaryVariant">@color/verde_mate_oscuro</item>
         <item name="colorOnSecondary">@color/white</item>
 
-        <item name="colorAccent">@color/black</item>
-        <item name="colorSurface">@color/white</item>
+        <item name="colorAccent">@color/verde_mate_claro</item>
+        <item name="colorSurface">@color/black</item>
         <item name="colorOnSurface">@color/verde_mate_claro</item>
+
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

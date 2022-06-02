@@ -11,12 +11,36 @@
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
             android:id="@+id/action_splashFragment_to_logInViewPagerFragment"
-            app:destination="@id/logInViewPagerFragment" />
+            app:destination="@id/logInViewPagerFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/logInViewPagerFragment"
         android:name="ar.com.midinero.ui.viewpager.LogInViewPagerFragment"
         android:label="fragment_log_in_view_pager"
-        tools:layout="@layout/fragment_log_in_view_pager" />
+        tools:layout="@layout/fragment_log_in_view_pager" >
+        <action
+            android:id="@+id/action_logInViewPagerFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/logInViewPagerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ar.com.midinero.ui.view.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_logInViewPagerFragment"
+            app:destination="@id/logInViewPagerFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

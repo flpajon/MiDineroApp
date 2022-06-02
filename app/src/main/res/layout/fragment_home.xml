@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+    tools:context=".ui.view.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_balance"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/view_balance"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_date"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent=".30">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_month"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="2021" />
+
+            <TextView
+                android:id="@+id/tv_month"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                tools:text="Agosto" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/available_balance"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_available_balance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_available_balance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toBottomOf="@id/cl_balance"
+            app:layout_constraintEnd_toEndOf="@id/cl_balance"
+            app:layout_constraintStart_toStartOf="@id/cl_balance"
+            app:layout_constraintTop_toBottomOf="@+id/cl_date"
+            app:layout_constraintVertical_bias=".30"
+            tools:text="$150000" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/total_cost"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/cl_balance"
+            app:layout_constraintStart_toStartOf="@id/cl_balance"
+            app:layout_constraintTop_toBottomOf="@id/tv_available_balance" />
+
+        <TextView
+            android:id="@+id/tv_total_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="?attr/colorPrimaryVariant"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@id/cl_balance"
+            app:layout_constraintStart_toStartOf="@id/cl_balance"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:text="$150000" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_balance"
+        tools:listitem="@layout/cv_bank_movements" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add_movement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toTopOf="@+id/btn_change_date"
+        app:layout_constraintEnd_toEndOf="@+id/btn_change_date"
+        android:focusable="true"
+        android:visibility="gone"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_change_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:src="@drawable/ic_date"
+        app:layout_constraintBottom_toTopOf="@+id/btn_show_statistics"
+        app:layout_constraintEnd_toEndOf="@+id/btn_show_statistics"
+        android:focusable="true"
+        android:visibility="gone"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_show_statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:src="@drawable/ic_info"
+        app:layout_constraintBottom_toTopOf="@+id/btn_log_out"
+        app:layout_constraintEnd_toEndOf="@+id/btn_log_out"
+        android:focusable="true"
+        android:visibility="gone"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:src="@drawable/ic_logout"
+        app:layout_constraintBottom_toTopOf="@+id/btn_menu_options"
+        app:layout_constraintEnd_toEndOf="@+id/btn_menu_options"
+        android:focusable="true"
+        android:visibility="gone"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_menu_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_wallet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

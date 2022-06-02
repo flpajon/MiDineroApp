@@ -4,12 +4,21 @@
     <string name="et_password">Contraseña</string>
     <string name="btn_ingresar">Ingresar</string>
     <string name="et_confirm_password">Confirmar Contraseña</string>
-    <string name="btn_singup">Registrar</string>
+    <string name="btn_signup">Registrar</string>
     <string name="complete_fields">Complete todos los campos</string>
     <string name="passwords_do_not_match">Las contraseñas no coinciden.</string>
     <string name="only_email">No ha ingrsado un mail valido.</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">SPLASH FRAGMENT</string>
     <string name="background">Fondo de la app</string>
+    <string name="invalid_email">El email ingresado no esta registrado. Quizas deberia registrarse.</string>
+    <string name="invalid_password">La contraseña es incorrecta.</string>
+    <string name="available_balance">Saldo Disponible</string>
+    <string name="total_cost">Total Gastado</string>
+    <string name="alert_message">AVISO</string>
+    <string name="log_out_question">Cerrar Sesion?</string>
+    <string name="dialog_result">DIALOG_RESULT</string>
+    <string name="et_movement_description">Descripción</string>
+    <string name="et_movement_mount">Monto</string>
+    <string name="tv_movement_tittle">Movimiento</string>
+    <string name="btn_add_positive_movement">Ingreso</string>
+    <string name="btn_add_negative_movement">Egreso</string>
 </resources>

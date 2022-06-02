@@ -7,4 +7,6 @@
     <color name="verde_mate_oscuro">#53ca98</color>
     <color name="verde_mate_claro">#8edcb9</color>
     <color name="gris">#4c555f</color>
+    <color name="verde_oscuro">#CD004D40</color>
+    <color name="rosa_oscuro">#FA5F49</color>
 </resources>
